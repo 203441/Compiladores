@@ -1,0 +1,304 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ILLEGAL_CHARACTER
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> variable_declaration
+Rule 2     statement -> function_declaration
+Rule 3     statement -> condition_declaration
+Rule 4     statement -> start_declaration
+Rule 5     variable_declaration -> TYPE IDENTIFIER EQUALS value
+Rule 6     function_declaration -> RESERVED_WORD IDENTIFIER LEFT_PAREN RIGHT_PAREN COLON CONTENT
+Rule 7     condition_declaration -> RESERVED_WORD expression COLON CONTENT
+Rule 8     start_declaration -> RESERVED_WORD COLON CONTENT
+Rule 9     expression -> value_exp OPERATOR value_exp
+Rule 10    value_exp -> IDENTIFIER
+Rule 11    value_exp -> NUMBER
+Rule 12    value_exp -> BOOLEAN
+Rule 13    value -> NUMBER
+Rule 14    value -> STRING
+Rule 15    value -> BOOLEAN
+
+Terminals, with rules where they appear
+
+BOOLEAN              : 12 15
+COLON                : 6 7 8
+CONTENT              : 6 7 8
+EQUALS               : 5
+IDENTIFIER           : 5 6 10
+ILLEGAL_CHARACTER    : 
+LEFT_PAREN           : 6
+NUMBER               : 11 13
+OPERATOR             : 9
+RESERVED_WORD        : 6 7 8
+RIGHT_PAREN          : 6
+STRING               : 14
+TYPE                 : 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+condition_declaration : 3
+expression           : 7
+function_declaration : 2
+start_declaration    : 4
+statement            : 0
+value                : 5
+value_exp            : 9 9
+variable_declaration : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . variable_declaration
+    (2) statement -> . function_declaration
+    (3) statement -> . condition_declaration
+    (4) statement -> . start_declaration
+    (5) variable_declaration -> . TYPE IDENTIFIER EQUALS value
+    (6) function_declaration -> . RESERVED_WORD IDENTIFIER LEFT_PAREN RIGHT_PAREN COLON CONTENT
+    (7) condition_declaration -> . RESERVED_WORD expression COLON CONTENT
+    (8) start_declaration -> . RESERVED_WORD COLON CONTENT
+
+    TYPE            shift and go to state 6
+    RESERVED_WORD   shift and go to state 7
+
+    statement                      shift and go to state 1
+    variable_declaration           shift and go to state 2
+    function_declaration           shift and go to state 3
+    condition_declaration          shift and go to state 4
+    start_declaration              shift and go to state 5
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> variable_declaration .
+
+    $end            reduce using rule 1 (statement -> variable_declaration .)
+
+
+state 3
+
+    (2) statement -> function_declaration .
+
+    $end            reduce using rule 2 (statement -> function_declaration .)
+
+
+state 4
+
+    (3) statement -> condition_declaration .
+
+    $end            reduce using rule 3 (statement -> condition_declaration .)
+
+
+state 5
+
+    (4) statement -> start_declaration .
+
+    $end            reduce using rule 4 (statement -> start_declaration .)
+
+
+state 6
+
+    (5) variable_declaration -> TYPE . IDENTIFIER EQUALS value
+
+    IDENTIFIER      shift and go to state 8
+
+
+state 7
+
+    (6) function_declaration -> RESERVED_WORD . IDENTIFIER LEFT_PAREN RIGHT_PAREN COLON CONTENT
+    (7) condition_declaration -> RESERVED_WORD . expression COLON CONTENT
+    (8) start_declaration -> RESERVED_WORD . COLON CONTENT
+    (9) expression -> . value_exp OPERATOR value_exp
+    (10) value_exp -> . IDENTIFIER
+    (11) value_exp -> . NUMBER
+    (12) value_exp -> . BOOLEAN
+
+    IDENTIFIER      shift and go to state 9
+    COLON           shift and go to state 10
+    NUMBER          shift and go to state 13
+    BOOLEAN         shift and go to state 14
+
+    expression                     shift and go to state 11
+    value_exp                      shift and go to state 12
+
+state 8
+
+    (5) variable_declaration -> TYPE IDENTIFIER . EQUALS value
+
+    EQUALS          shift and go to state 15
+
+
+state 9
+
+    (6) function_declaration -> RESERVED_WORD IDENTIFIER . LEFT_PAREN RIGHT_PAREN COLON CONTENT
+    (10) value_exp -> IDENTIFIER .
+
+    LEFT_PAREN      shift and go to state 16
+    OPERATOR        reduce using rule 10 (value_exp -> IDENTIFIER .)
+
+
+state 10
+
+    (8) start_declaration -> RESERVED_WORD COLON . CONTENT
+
+    CONTENT         shift and go to state 17
+
+
+state 11
+
+    (7) condition_declaration -> RESERVED_WORD expression . COLON CONTENT
+
+    COLON           shift and go to state 18
+
+
+state 12
+
+    (9) expression -> value_exp . OPERATOR value_exp
+
+    OPERATOR        shift and go to state 19
+
+
+state 13
+
+    (11) value_exp -> NUMBER .
+
+    OPERATOR        reduce using rule 11 (value_exp -> NUMBER .)
+    COLON           reduce using rule 11 (value_exp -> NUMBER .)
+
+
+state 14
+
+    (12) value_exp -> BOOLEAN .
+
+    OPERATOR        reduce using rule 12 (value_exp -> BOOLEAN .)
+    COLON           reduce using rule 12 (value_exp -> BOOLEAN .)
+
+
+state 15
+
+    (5) variable_declaration -> TYPE IDENTIFIER EQUALS . value
+    (13) value -> . NUMBER
+    (14) value -> . STRING
+    (15) value -> . BOOLEAN
+
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    BOOLEAN         shift and go to state 23
+
+    value                          shift and go to state 20
+
+state 16
+
+    (6) function_declaration -> RESERVED_WORD IDENTIFIER LEFT_PAREN . RIGHT_PAREN COLON CONTENT
+
+    RIGHT_PAREN     shift and go to state 24
+
+
+state 17
+
+    (8) start_declaration -> RESERVED_WORD COLON CONTENT .
+
+    $end            reduce using rule 8 (start_declaration -> RESERVED_WORD COLON CONTENT .)
+
+
+state 18
+
+    (7) condition_declaration -> RESERVED_WORD expression COLON . CONTENT
+
+    CONTENT         shift and go to state 25
+
+
+state 19
+
+    (9) expression -> value_exp OPERATOR . value_exp
+    (10) value_exp -> . IDENTIFIER
+    (11) value_exp -> . NUMBER
+    (12) value_exp -> . BOOLEAN
+
+    IDENTIFIER      shift and go to state 27
+    NUMBER          shift and go to state 13
+    BOOLEAN         shift and go to state 14
+
+    value_exp                      shift and go to state 26
+
+state 20
+
+    (5) variable_declaration -> TYPE IDENTIFIER EQUALS value .
+
+    $end            reduce using rule 5 (variable_declaration -> TYPE IDENTIFIER EQUALS value .)
+
+
+state 21
+
+    (13) value -> NUMBER .
+
+    $end            reduce using rule 13 (value -> NUMBER .)
+
+
+state 22
+
+    (14) value -> STRING .
+
+    $end            reduce using rule 14 (value -> STRING .)
+
+
+state 23
+
+    (15) value -> BOOLEAN .
+
+    $end            reduce using rule 15 (value -> BOOLEAN .)
+
+
+state 24
+
+    (6) function_declaration -> RESERVED_WORD IDENTIFIER LEFT_PAREN RIGHT_PAREN . COLON CONTENT
+
+    COLON           shift and go to state 28
+
+
+state 25
+
+    (7) condition_declaration -> RESERVED_WORD expression COLON CONTENT .
+
+    $end            reduce using rule 7 (condition_declaration -> RESERVED_WORD expression COLON CONTENT .)
+
+
+state 26
+
+    (9) expression -> value_exp OPERATOR value_exp .
+
+    COLON           reduce using rule 9 (expression -> value_exp OPERATOR value_exp .)
+
+
+state 27
+
+    (10) value_exp -> IDENTIFIER .
+
+    COLON           reduce using rule 10 (value_exp -> IDENTIFIER .)
+
+
+state 28
+
+    (6) function_declaration -> RESERVED_WORD IDENTIFIER LEFT_PAREN RIGHT_PAREN COLON . CONTENT
+
+    CONTENT         shift and go to state 29
+
+
+state 29
+
+    (6) function_declaration -> RESERVED_WORD IDENTIFIER LEFT_PAREN RIGHT_PAREN COLON CONTENT .
+
+    $end            reduce using rule 6 (function_declaration -> RESERVED_WORD IDENTIFIER LEFT_PAREN RIGHT_PAREN COLON CONTENT .)
+
